@@ -22,3 +22,6 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 
 LAYOUTS = ortho_5x15
+
+TAP_DANCE_ENABLE = yes
+RAW_ENABLE = yes
