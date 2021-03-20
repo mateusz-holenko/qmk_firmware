@@ -1,0 +1,4 @@
+#define ONESHOT_TAP_TOGGLE 2
+#define TAPPING_TOGGLE 2
+#define COMBO_COUNT 1
+#define COMBO_TERM 100
