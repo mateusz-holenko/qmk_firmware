@@ -89,6 +89,22 @@ enum custom_keycodes {
     _TMUX_RIGHT,
     _TMUX_SPLITH,
     _TMUX_SPLITV,
+
+    _QTILE_PREV,
+    _QTILE_GROUP0,
+    _QTILE_GROUP1,
+    _QTILE_GROUP2,
+    _QTILE_GROUP3,
+    _QTILE_GROUP4,
+    _QTILE_GROUP5,
+    _QTILE_GROUP6,
+    _QTILE_GROUP7,
+    _QTILE_GROUP8,
+    _QTILE_GROUP9,
+    _QTILE_UP,
+    _QTILE_DOWN,
+    _QTILE_LEFT,
+    _QTILE_RIGHT,
 };
 
 #define TMUX_ACTION \
@@ -172,6 +188,95 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         TMUX_ACTION
         tap_code(KC_MINUS);
         break;
+
+    case _QTILE_PREV:
+        register_code(KC_LGUI);
+        register_code(KC_LSFT);
+        tap_code(KC_U);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_UP:
+        register_code(KC_LGUI);
+        tap_code(KC_K);
+        unregister_code(KC_LGUI);
+        break;
+    case _QTILE_DOWN:
+        register_code(KC_LGUI);
+        tap_code(KC_J);
+        unregister_code(KC_LGUI);
+        break;
+    case _QTILE_LEFT:
+        register_code(KC_LGUI);
+        tap_code(KC_H);
+        unregister_code(KC_LGUI);
+        break;
+    case _QTILE_RIGHT:
+        register_code(KC_LGUI);
+        tap_code(KC_L);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP0:
+        register_code(KC_LGUI);
+        tap_code(KC_0);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP1:
+        register_code(KC_LGUI);
+        tap_code(KC_1);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP2:
+        register_code(KC_LGUI);
+        tap_code(KC_2);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP3:
+        register_code(KC_LGUI);
+        tap_code(KC_3);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP4:
+        register_code(KC_LGUI);
+        tap_code(KC_4);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP5:
+        register_code(KC_LGUI);
+        tap_code(KC_5);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP6:
+        register_code(KC_LGUI);
+        tap_code(KC_6);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP7:
+        register_code(KC_LGUI);
+        tap_code(KC_7);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP8:
+        register_code(KC_LGUI);
+        tap_code(KC_8);
+        unregister_code(KC_LGUI);
+        break;
+
+    case _QTILE_GROUP9:
+        register_code(KC_LGUI);
+        tap_code(KC_9);
+        unregister_code(KC_LGUI);
+        break;
     }
 
     return true;
@@ -187,7 +292,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	LCTL_T(KC_ESC)  , /* | */ KC_A   , KC_S                  , KC_H           , KC_T           , KC_G                 , /* | */ _____, _____        , _____, /* | */ KC_Y           , KC_N                          , KC_E                , KC_O          , KC_I           , /* | */ KC_ENT                   ,
         	OSM(MOD_LSFT)   , /* | */ KC_Z   , KC_X                  , KC_M           , KC_C           , KC_V                 , /* | */ _____, _____        , _____, /* | */ KC_K           , KC_L                          , OSL(_SYMBOLS_LAYER) , KC_DOT        , KC_SLSH        , /* | */ KC_RSFT                  ,
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        	_____           , /* | */ KC_LGUI, KC_LALT               , KC_BSPC        , KC_SPC         , TT(_TMUX_LAYER)      , /* | */ _____, _____        , _____, /* | */ TT(_MOVE_LAYER), LT(_ALT_LAYER, KC_ENT)        , _____               , KC_RALT       , KC_RGUI        , /* | */ TG(_SYMBOLS_LAYER))      ,
+        	_____           , /* | */ KC_LGUI, KC_LALT               , KC_BSPC        , KC_SPC         , TT(_TMUX_LAYER)      , /* | */ _____, _____        , _____, /* | */ TT(_MOVE_LAYER), LT(_ALT_LAYER, KC_ENT)        , TT(_QTILE_LAYER)    , KC_RALT       , KC_RGUI        , /* | */ TG(_SYMBOLS_LAYER))      ,
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	[_QWERTY_LAYER] = LAYOUT_ortho_5x15(
@@ -249,7 +354,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__         , __v__          ,  __v__         ,  __v__       , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , __v__           , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-        	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , _TMUX_UP        , /* | */ __v__       ,
+        	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , _TMUX_UP      , __v__          , __v__           , /* | */ __v__       ,
         	__v__         , /* | */ __v__         , _TMUX_SPLITH   , _TMUX_SPLITV   , _TMUX_PREV   , _TMUX_PANE0        , /* | */ __v__, __v__ , __v__, /* | */ _TMUX_PANE1           , _TMUX_LEFT   , _TMUX_DOWN    , _TMUX_RIGHT    , __v__           , /* | */ __v__       ,
         	__v__         , /* | */ _TMUX_PANE6   , _TMUX_PANE7    , _TMUX_PANE8    , _TMUX_PANE9  , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , _TMUX_PANE2  , _TMUX_PANE3   , _TMUX_PANE4    , _TMUX_PANE5     , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -267,6 +372,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	__v__         , /* | */ __v__      , __v__       , __v__    , KC_BSPC    , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__)      ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    	[_QTILE_LAYER] = LAYOUT_ortho_5x15(
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__         , __v__          ,  __v__         ,  __v__       , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , __v__           , /* | */ __v__       ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , _QTILE_UP         , __v__          , __v__        , /* | */ __v__       ,
+        	__v__         , /* | */ __v__         , __v__          , __v__          , _QTILE_PREV  , _QTILE_GROUP0      , /* | */ __v__, __v__ , __v__, /* | */ _QTILE_GROUP1         , _QTILE_LEFT   , _QTILE_DOWN    , _QTILE_RIGHT    , __v__           , /* | */ __v__       ,
+        	__v__         , /* | */ _QTILE_GROUP6 , _QTILE_GROUP7  , _QTILE_GROUP8  , _QTILE_GROUP9, __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , _QTILE_GROUP2  , _QTILE_GROUP3   , _QTILE_GROUP4    , _QTILE_GROUP5     , /* | */ __v__       ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , __v__           , /* | */ __v__)      ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #if 0
 	[_EMPTY_LAYER] = LAYOUT_ortho_5x15(
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
