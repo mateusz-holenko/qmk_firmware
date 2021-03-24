@@ -89,6 +89,10 @@ enum custom_keycodes {
     _TMUX_RIGHT,
     _TMUX_SPLITH,
     _TMUX_SPLITV,
+    _TMUX_KILL,
+    _TMUX_MAX,
+    _TMUX_MAX2,
+    _TMUX_CREATE,
 
     _QTILE_PREV,
     _QTILE_GROUP0,
@@ -187,6 +191,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case _TMUX_SPLITV:
         TMUX_ACTION
         tap_code(KC_MINUS);
+        break;
+    case _TMUX_MAX:
+    case _TMUX_MAX2:
+        TMUX_ACTION
+        tap_code(KC_Z);
+        break;
+    case _TMUX_KILL:
+        TMUX_ACTION
+        tap_code(KC_X);
+        tap_code(KC_Y);
+        break;
+
+    case _TMUX_CREATE:
+        TMUX_ACTION
+        tap_code(KC_C);
         break;
 
     case _QTILE_PREV:
@@ -292,7 +311,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	LCTL_T(KC_ESC)  , /* | */ KC_A   , KC_S                  , KC_H           , KC_T           , KC_G                 , /* | */ _____, _____        , _____, /* | */ KC_Y           , KC_N                          , KC_E                , KC_O          , KC_I           , /* | */ KC_ENT                   ,
         	OSM(MOD_LSFT)   , /* | */ KC_Z   , KC_X                  , KC_M           , KC_C           , KC_V                 , /* | */ _____, _____        , _____, /* | */ KC_K           , KC_L                          , OSL(_SYMBOLS_LAYER) , KC_DOT        , KC_SLSH        , /* | */ KC_RSFT                  ,
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        	_____           , /* | */ KC_LGUI, KC_LALT               , KC_BSPC        , KC_SPC         , TT(_TMUX_LAYER)      , /* | */ _____, _____        , _____, /* | */ TT(_MOVE_LAYER), LT(_ALT_LAYER, KC_ENT)        , TT(_QTILE_LAYER)    , KC_RALT       , KC_RGUI        , /* | */ TG(_SYMBOLS_LAYER))      ,
+        	_____           , /* | */ KC_LGUI, KC_LALT               , KC_BSPC        , KC_SPC         , LT(_TMUX_LAYER, _TMUX_PREV)      , /* | */ _____, _____        , _____, /* | */ TT(_MOVE_LAYER), LT(_ALT_LAYER, KC_ENT)        , TT(_QTILE_LAYER)    , KC_RALT       , KC_RGUI        , /* | */ TG(_SYMBOLS_LAYER))      ,
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	[_QWERTY_LAYER] = LAYOUT_ortho_5x15(
@@ -354,9 +373,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__         , __v__          ,  __v__         ,  __v__       , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , __v__           , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-        	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , _TMUX_UP      , __v__          , __v__           , /* | */ __v__       ,
-        	__v__         , /* | */ __v__         , _TMUX_SPLITH   , _TMUX_SPLITV   , _TMUX_PREV   , _TMUX_PANE0        , /* | */ __v__, __v__ , __v__, /* | */ _TMUX_PANE1           , _TMUX_LEFT   , _TMUX_DOWN    , _TMUX_RIGHT    , __v__           , /* | */ __v__       ,
-        	__v__         , /* | */ _TMUX_PANE6   , _TMUX_PANE7    , _TMUX_PANE8    , _TMUX_PANE9  , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , _TMUX_PANE2  , _TMUX_PANE3   , _TMUX_PANE4    , _TMUX_PANE5     , /* | */ __v__       ,
+        	__v__         , /* | */ __v__         , _TMUX_MAX      , _TMUX_MAX2     , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , _TMUX_UP      , __v__          , __v__           , /* | */ __v__       ,
+        	__v__         , /* | */ _TMUX_KILL    , _TMUX_SPLITH   , _TMUX_SPLITV   , _TMUX_PREV   , _TMUX_PANE0        , /* | */ __v__, __v__ , __v__, /* | */ _TMUX_PANE1           , _TMUX_LEFT   , _TMUX_DOWN    , _TMUX_RIGHT    , __v__           , /* | */ __v__       ,
+        	__v__         , /* | */ _TMUX_PANE6   , _TMUX_PANE7    , _TMUX_PANE8    , _TMUX_PANE9  , _TMUX_CREATE       , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , _TMUX_PANE2  , _TMUX_PANE3   , _TMUX_PANE4    , _TMUX_PANE5     , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__         , __v__          , __v__          , __v__        , __v__              , /* | */ __v__, __v__ , __v__, /* | */ __v__                 , __v__        , __v__         , __v__          , __v__           , /* | */ __v__)      ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -366,7 +385,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	__v__         , /* | */ __v__      , __v__       ,  __v__   ,  __v__     , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__      , __v__       , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__       ,
-        	__v__         , /* | */ ALGR(KC_A) , ALGR(KC_S)  , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , ALGR(KC_E)    , ALGR(KC_O)     , /* | */ __v__       ,
+        	__v__         , /* | */ ALGR(KC_A) , ALGR(KC_S)  , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , ALGR(KC_E) ,      ALGR(KC_O),  __v__    , /* | */ __v__       ,
         	__v__         , /* | */ ALGR(KC_Z) , ALGR(KC_X)  , __v__    , ALGR(KC_C) , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , ALGR(KC_L) , __v__   , __v__         , __v__          , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__      , __v__       , __v__    , KC_BSPC    , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__)      ,
@@ -403,6 +422,9 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 bool _reenable_as;
 
 uint32_t layer_state_set_user(uint32_t state) {
+    rgblight_set_layer_state(2, layer_state_cmp(state, _TMUX_LAYER));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _MOVE_LAYER));
+
     switch (biton32(state)) {
       case _SYMBOLS_LAYER:
           _reenable_as |= get_autoshift_state();
@@ -416,5 +438,46 @@ uint32_t layer_state_set_user(uint32_t state) {
           break;
       }
    return state;
+}
+
+// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {6, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
+    {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+);
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {9, 2, HSV_CYAN}
+);
+// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {11, 2, HSV_PURPLE}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 3 is active
+const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {13, 2, HSV_GREEN}
+);
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_capslock_layer,
+    my_layer1_layer,    // Overrides caps lock layer
+    my_layer2_layer,    // Overrides other layers
+    my_layer3_layer     // Overrides other layers
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(0, led_state.caps_lock);
+    return true;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, _WORKMAN_LAYER));
+    return state;
 }
 
