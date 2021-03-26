@@ -11,9 +11,8 @@
 #define _WORKMAN_SHIFTED_LAYER 1
 #define _QWERTY_LAYER  2
 #define _SYMBOLS_LAYER 3
-#define _TMUX_LAYER 4
-#define _QTILE_LAYER 5
-#define _ALT_LAYER 6
+#define _ALT_LAYER 5
+#define _ALT2_LAYER 6
 #define _MOVE_LAYER 8
 #define _MOUSE_LAYER 9
 #define _SYSTEM_LAYER 10
@@ -312,7 +311,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	LCTL_T(KC_ESC)            , /* | */ KC_A         , KC_S         , KC_H        , KC_T         , KC_G                         , /* | */ _____ , _____ , _____  , /* | */ KC_Y             , KC_N                   , KC_E                , KC_O         , KC_I         , /* | */ OSL(_SYMBOLS_LAYER)  ,
         	KC_TAB                    , /* | */ KC_Z         , KC_X         , KC_M        , KC_C         , KC_V                         , /* | */ _____ , _____ , _____  , /* | */ KC_K             , KC_L                   , KC_COMM             , KC_DOT       , KC_SLSH      , /* | */ KC_QUOT  ,
         	// ------------------------------------------------------------------------------------------------------------------
-        	TG(_SYMBOLS_LAYER)        , /* | */ KC_LGUI      , KC_LALT      , _____       , LT(_ALT_LAYER, KC_SPC)       , MO(_WORKMAN_SHIFTED_LAYER)  , /* | */ _____ , _____ , _____  , /* | */  MO(_MOVE_LAYER)  , LT(_ALT_LAYER, KC_ENT) , KC_LEFT             , KC_DOWN      , KC_UP        , /* | */ KC_RIGHT),
+        	TG(_SYMBOLS_LAYER)        , /* | */ KC_LGUI      , KC_LALT      , OSM(_SYMBOLS_LAYER)        , LT(_ALT2_LAYER, KC_SPC)      , MO(_WORKMAN_SHIFTED_LAYER)  , /* | */ _____ , _____ , _____  , /* | */  MO(_MOVE_LAYER)  , LT(_ALT_LAYER, KC_ENT) , KC_LEFT             , KC_DOWN      , KC_UP        , /* | */ KC_RIGHT),
         	// ------------------------------------------------------------------------------------------------------------------------------
 
 	[_WORKMAN_SHIFTED_LAYER] = LAYOUT_ortho_5x15(
@@ -325,6 +324,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         	_____  , /* | */ __v__  , __v__  , __v__ , __v__  , __v__  , /* | */ _____, _____ , _____ , /* | */ __v__  , __v__  , __v__  , __v__   , __v__   , /* | */ __v__),
         	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 	[_QWERTY_LAYER] = LAYOUT_ortho_5x15(
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__   , __v__    ,  __v__   ,  __v__ , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__  , __v__   , __v__    , __v__     , /* | */ __v__       ,
@@ -342,7 +342,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	// -----------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__   , __v__              , __v__    , __v__  , __v__         , /* | */ __v__, __v__ , __v__, /* | */ KC_INS           , KC_HOME       , KC_UP     , KC_END      , KC_PGUP     , /* | */ __v__       ,
         	__v__         , /* | */ _TMUX_MAX    , _TMUX_SPLITH   , _TMUX_SPLITV   , _TMUX_CREATE   , _TMUX_KILL         , /* | */ __v__, __v__ , __v__, /* | */ KC_DEL           , KC_LEFT       , KC_DOWN   , KC_RIGHT    , KC_PGDN     , /* | */ __v__       ,
-        	__v__         , /* | */ __v__   , __v__              , __v__    , __v__  , __v__         , /* | */ __v__, __v__ , __v__, /* | */ _TMUX_PREV       , _QTILE_PREV   , __v__     , __v__       , __v__       , /* | */ __v__       ,
+        	__v__         , /* | */ __v__   , __v__              , KC_SPC    , KC_ENT  , __v__         , /* | */ __v__, __v__ , __v__, /* | */ _TMUX_PREV       , _QTILE_PREV   , __v__     , __v__       , __v__       , /* | */ __v__       ,
         	// -----------------------------------------------------------------------------------------------------------------------------------------------
         	__v__         , /* | */ __v__   , __v__              , __v__    , __v__  , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__            , __v__         , __v__     , __v__       , __v__       , /* | */ __v__)      ,
         	// -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -373,11 +373,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	// ----------------------- -------------------------------------------------------------------------------------------------------------
         	__v__ , /* | */ __v__      , __v__     ,  __v__    ,  __v__     , __v__      , /* | */ __v__, __v__ , __v__, /* | */ __v__                , __v__      , __v__      , __v__   , __v__      , /* | */ __v__  ,
         	// ----------------------- -------------------------------------------------------------------------------------------------------------
-        	__v__ , /* | */ S(KC_5)    , S(KC_7)   , S(KC_EQL) , S(KC_2)    , S(KC_4)    , /* | */ __v__, __v__ , __v__, /* | */ KC_SLSH              , KC_LBRC    , KC_RBRC    , S(KC_1) , S(KC_QUOT) , /* | */ __v__  ,
+        	__v__ , /* | */ S(KC_5)    , S(KC_7)   , S(KC_EQL) , S(KC_2)    , S(KC_4)    , /* | */ __v__, __v__ , __v__, /* | */ S(KC_6)              , KC_LBRC    , KC_RBRC    , S(KC_1) , S(KC_QUOT) , /* | */ __v__  ,
         	__v__ , /* | */ S(KC_MINS) , S(KC_9)   , KC_EQL    , S(KC_LBRC) , KC_0       , /* | */ __v__, __v__ , __v__, /* | */ KC_1                 , S(KC_RBRC) , S(KC_8)    , S(KC_0) , KC_MINS    , /* | */ __v__  ,
         	__v__ , /* | */ KC_6       , KC_7      , KC_8      , KC_9       , S(KC_BSLS) , /* | */ __v__, __v__ , __v__, /* | */ KC_BSLS              , KC_2       , KC_3       , KC_4    , KC_5       , /* | */ __v__  ,
         	// ----------------------- -------------------------------------------------------------------------------------------------------------
-        	__v__ , /* | */ __v__      , S(KC_GRV) , S(KC_6)   , __v__      , KC_GRV     , /* | */ __v__, __v__ , __v__, /* | */ S(KC_3)              , KC_COMM    , S(KC_COMM) , __v__   , __v__      , /* | */ __v__) ,
+        	__v__ , /* | */ __v__      , __v__     , KC_GRV    , __v__      , S(KC_COMM) , /* | */ __v__, __v__ , __v__, /* | */ S(KC_DOT)            , S(KC_3)    , S(KC_GRV)  , __v__   , __v__      , /* | */ __v__) ,
         	// ----------------------- -------------------------------------------------------------------------------------------------------------
 
     	[_ALT_LAYER] = LAYOUT_ortho_5x15(
@@ -388,7 +388,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	__v__         , /* | */ ALGR(KC_A) , ALGR(KC_S)  , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , ALGR(KC_E) ,      ALGR(KC_O),  __v__    , /* | */ __v__       ,
         	__v__         , /* | */ ALGR(KC_Z) , ALGR(KC_X)  , __v__    , ALGR(KC_C) , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , ALGR(KC_L) , __v__   , __v__         , __v__          , /* | */ __v__       ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-        	__v__         , /* | */ __v__      , __v__       , __v__    , KC_BSPC    , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , KC_BSPC      , __v__   , __v__         , __v__          , /* | */ __v__)      ,
+        	__v__         , /* | */ __v__      , __v__       , __v__    , KC_BSPC    , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__)      ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    	[_ALT2_LAYER] = LAYOUT_ortho_5x15(
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__      , __v__       ,  __v__   ,  __v__     , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__       ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__      , __v__       , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , __v__   , __v__         , __v__          , /* | */ __v__       ,
+        	__v__         , /* | */ ALGR(KC_A) , ALGR(KC_S)  , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , __v__      , ALGR(KC_E) ,      ALGR(KC_O),  __v__    , /* | */ __v__       ,
+        	__v__         , /* | */ ALGR(KC_Z) , ALGR(KC_X)  , __v__    , ALGR(KC_C) , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , ALGR(KC_L) , __v__   , __v__         , __v__          , /* | */ __v__       ,
+        	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	__v__         , /* | */ __v__      , __v__       , __v__    , __v__      , __v__         , /* | */ __v__, __v__ , __v__, /* | */ __v__           , KC_BSPC      , __v__   , __v__         , __v__          , /* | */ __v__)      ,
         	// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #if 0
@@ -409,11 +420,15 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         raw_hid_send(data, length);
 }
 
+#define SHIFT_LAYER_STATE 0
+#define MOUSE_LAYER_STATE 1
+#define SYMBOLS_LAYER_STATE 2
+
 bool _reenable_as;
 
 uint32_t layer_state_set_user(uint32_t state) {
-    rgblight_set_layer_state(2, layer_state_cmp(state, _TMUX_LAYER));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _MOVE_LAYER));
+    rgblight_set_layer_state(MOUSE_LAYER_STATE, layer_state_cmp(state, _MOUSE_LAYER));
+    rgblight_set_layer_state(SYMBOLS_LAYER_STATE, layer_state_cmp(state, _SYMBOLS_LAYER));
 
     switch (biton32(state)) {
       case _SYMBOLS_LAYER:
@@ -430,30 +445,21 @@ uint32_t layer_state_set_user(uint32_t state) {
    return state;
 }
 
-// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
-const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {6, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
-    {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+const rgblight_segment_t PROGMEM my_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_ORANGE}
 );
-// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
-const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {9, 2, HSV_CYAN}
+const rgblight_segment_t PROGMEM my_mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_GOLD}
 );
-// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
-const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {11, 2, HSV_PURPLE}
-);
-// Light LEDs 13 & 14 in green when keyboard layer 3 is active
-const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {13, 2, HSV_GREEN}
+const rgblight_segment_t PROGMEM my_symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_GREEN}
 );
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_capslock_layer,
-    my_layer1_layer,    // Overrides caps lock layer
-    my_layer2_layer,    // Overrides other layers
-    my_layer3_layer     // Overrides other layers
+    my_shift_layer,    // Overrides caps lock layer
+    my_mouse_layer,    // Overrides other layers
+    my_symbols_layer     // Overrides other layers
 );
 
 void keyboard_post_init_user(void) {
@@ -461,13 +467,16 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 }
 
-bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
-    return true;
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    // rgblight_set_layer_state(1, layer_state_cmp(state, _WORKMAN_LAYER));
+    return state;
 }
 
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _WORKMAN_LAYER));
-    return state;
+void oneshot_mods_changed_user(uint8_t mods) {
+  rgblight_set_layer_state(SHIFT_LAYER_STATE, (mods & MOD_MASK_SHIFT));
+}
+
+void oneshot_locked_mods_changed_user(uint8_t mods) {
+  rgblight_set_layer_state(SHIFT_LAYER_STATE, (mods & MOD_MASK_SHIFT));
 }
 
