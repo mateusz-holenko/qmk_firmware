@@ -449,7 +449,7 @@ const rgblight_segment_t PROGMEM my_shift_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_ORANGE}
 );
 const rgblight_segment_t PROGMEM my_mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_GOLD}
+    {0, 6, HSV_RED}
 );
 const rgblight_segment_t PROGMEM my_symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_GREEN}
