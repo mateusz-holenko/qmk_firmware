@@ -311,7 +311,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         	LCTL_T(KC_ESC)            , /* | */ KC_A         , KC_S         , KC_H        , KC_T         , KC_G                         , /* | */ _____ , _____ , _____  , /* | */ KC_Y             , KC_N                   , KC_E                , KC_O         , KC_I         , /* | */ KC_BSPC  ,
         	KC_TAB                    , /* | */ KC_Z         , KC_X         , KC_M        , KC_C         , KC_V                         , /* | */ _____ , _____ , _____  , /* | */ KC_K             , KC_L                   , KC_COMM             , KC_DOT       , KC_SLSH      , /* | */ KC_QUOT  ,
         	// ------------------------------------------------------------------------------------------------------------------
-        	_____                     , /* | */ KC_LGUI      , KC_LALT      , OSM(_SYMBOLS_LAYER)        , KC_SPC                       , MO(_WORKMAN_SHIFTED_LAYER)  , /* | */ _____ , _____ , _____  , /* | */  MO(_MOVE_LAYER)  , RALT_T(KC_ENT) , KC_LEFT             , KC_DOWN      , KC_UP        , /* | */ KC_RIGHT),
+        	_____                     , /* | */ KC_LGUI      , KC_LALT      , OSL(_SYMBOLS_LAYER)        , KC_SPC                       , MO(_WORKMAN_SHIFTED_LAYER)  , /* | */ _____ , _____ , _____  , /* | */  MO(_MOVE_LAYER)  , RALT_T(KC_ENT) , KC_LEFT             , KC_DOWN      , KC_UP        , /* | */ KC_RIGHT),
         	// ------------------------------------------------------------------------------------------------------------------------------
 
 	[_WORKMAN_SHIFTED_LAYER] = LAYOUT_ortho_5x15(
